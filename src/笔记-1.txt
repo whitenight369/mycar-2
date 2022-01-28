@@ -1,0 +1,3 @@
+cnpm i @craco/craco -D;
+cnpm i craco-less -D;
+cnpm i antd -S;

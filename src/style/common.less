@@ -1,0 +1,22 @@
+@import './default.less';
+@import './loading.less';
+ul,li{
+    list-style: none;
+}
+.container{
+    .nav-left{
+        width: 15%;
+        background-color: @colorS;
+        color: @colorM;
+        // height: calc(100vh);
+    }
+    .main{
+        height: calc(100vh);
+        background-color: @colorL;
+        overflow: auto;
+    }
+    .content{
+        position: relative;
+        padding: 20px;
+    }
+}
