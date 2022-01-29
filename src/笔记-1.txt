@@ -1,3 +1,16 @@
 cnpm i @craco/craco -D;
 cnpm i craco-less -D;
 cnpm i antd -S;
+静态组件获取不到路由的title
+用redux实现面包屑的切换
+redux链接到静态组件
+直接mapStateToProps就把store里面的state扔到props里面去了
+
+Login
+--->Form.Item里面只能有一个子元素  不然Form获取数据的时候就会获取到undefined
+    比如remember me里面加一个忘记密码  也有可能这是原生dom  所以antd获取不到dom
+
+报错:
+`info.item` is deprecated since we will move to function component that not provides React Node instance in future.
+warning @ warning.js:6
+antdesign改版之后报错  解决---不知道
