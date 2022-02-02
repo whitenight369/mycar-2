@@ -33,7 +33,7 @@ const Buttons=()=>{
             </Card>
             <Card title="按钮组" style={{marginBottom:10}} >
                 <Button type='primary'icon={<LeftOutlined />}>前进</Button>
-                <Button type='primary' icon={<RightOutlined />}>后退</Button>
+                <Button type='primary' >后退<RightOutlined/></Button>
             </Card>
             <Card title="按钮尺寸" className='card-wrap' onChange={item=>{
                 // console.log(item.target.value);

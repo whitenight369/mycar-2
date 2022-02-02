@@ -14,3 +14,10 @@ Login
 `info.item` is deprecated since we will move to function component that not provides React Node instance in future.
 warning @ warning.js:6
 antdesign改版之后报错  解决---不知道
+
+无报错:
+reg---birthday不能获取到数据  可能是因为space导致的
+
+无报错:
+单选按钮设置不上去--->table-basic
+解决  ---->数据必须加key值  key值要保持和索引值一样 selectedRowKeys

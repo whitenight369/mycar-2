@@ -11,6 +11,9 @@ import Tab from "./pages/ui/Tabs";
 import Gallery from "./pages/ui/Gallery";
 import Carousels from "./pages/ui/Carousel";
 import Login from "./pages/form/Login";
+import Reg from "./pages/form/Reg";
+import Basic from "./pages/table/Basic";
+import HighTable from "./pages/table/HighTable";
 
 const IRouter = () =>{
     return (
@@ -28,6 +31,9 @@ const IRouter = () =>{
                     <Route path="/ui/gallery" component={Gallery}/>
                     <Route path="/ui/carousel" component={Carousels}/>
                     <Route path="/form/login" component={Login}/>
+                    <Route path="/form/reg" component={Reg}/>
+                    <Route path="/table/basic" component={Basic}/>
+                    <Route path="/table/high" component={HighTable}/>
                     </Admin>
                 }/>
             </App>        
