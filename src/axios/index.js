@@ -8,6 +8,7 @@ export default class Axios {
             params,isMock
         }
         this.ajax({url,data}).then(res=>{
+            // console.log(res);
             let list=res.result.list.map((value,index)=>{
                 value.key=index;
                 return value;
@@ -18,7 +19,7 @@ export default class Axios {
                 pagination:utils.pagination(res, (current) => {//修改this上面的页码 然后根据这个页码从新取数据 下面的request就是从新取数据的过程  后台根据page来给数据
                     params.page = current;
                     console.log("params.page",params.page);
-                    obj.request();
+                    // obj.request();
                 })
             })
         })

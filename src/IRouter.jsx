@@ -18,6 +18,7 @@ import City from "./pages/city";
 import Order from "./pages/order";
 import Detail from "./pages/order/Detail";
 import Common from './Common';
+import User from "./pages/user";
 
 const IRouter = () =>{
     return (
@@ -47,6 +48,7 @@ const IRouter = () =>{
                     <Route path="/table/high" component={HighTable}/>
                     <Route path="/city" component={City}/>
                     <Route path="/order" component={Order}/>
+                    <Route path="/user" component={User}/>
                     </Admin>
                 }/>
                 </Switch>

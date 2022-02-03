@@ -15,7 +15,7 @@ const Order = () => {
         request()
     }, []);
     const request = () => {
-        Axios.requestList({ state, setState, request }, '/order/list', params)
+        Axios.requestList({ state, setState }, '/order/list', params)
     }
     const formList = [
         {

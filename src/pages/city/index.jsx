@@ -19,7 +19,7 @@ const City = () => {
                 params
             }
         }).then(res => {
-            console.log(res);
+            // console.log(res);
             setState({
                 ...state,
                 list: res.result.list,
