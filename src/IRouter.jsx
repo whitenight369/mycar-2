@@ -19,7 +19,7 @@ import Order from "./pages/order";
 import Detail from "./pages/order/Detail";
 import Common from './Common';
 import User from "./pages/user";
-
+import BikeMap from './pages/map';
 const IRouter = () =>{
     return (
         <HashRouter>
@@ -49,6 +49,7 @@ const IRouter = () =>{
                     <Route path="/city" component={City}/>
                     <Route path="/order" component={Order}/>
                     <Route path="/user" component={User}/>
+                    <Route path="/bikeMap" component={BikeMap} />
                     </Admin>
                 }/>
                 </Switch>

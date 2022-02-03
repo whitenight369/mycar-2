@@ -42,3 +42,19 @@ Cannot read properties of null (reading 'clientWidth')
         drawBikeRoute(res.position_list);//绘制路线图
         drawServiveArea(res.area);//绘制服务区
     }
+
+无报错:
+遮罩层不出现
+        Polygon就行了
+        // let polygon=new window.BMapGL.Polyline(trackPoint,{
+        //     strokeColor: "#CE0000",
+        //     strokeWeight: 3,
+        //     fillColor:"#ff8605",
+        //     fillOpacity:0.4
+        // })
+        let polygon=new window.BMapGL.Polygon(trackPoint,{
+            strokeColor:"#ce0000",
+            strokeWeight:3,
+            fillColor:"#ff8605",
+            fillOpacity:0.4
+        })

@@ -3,9 +3,10 @@ import {Card,Form} from 'antd';
 import Axios from '../../axios';
 import './detail.less';
 const Detail=(props)=>{
-    const [state,setState]=useState({});
+    const [state,setState]=useState({orderInfo:{}});
     useEffect(()=>{
         let orderId=props.match.params.orderId;
+        // console.log("roderID",orderId);
         getDetailInfo(orderId);
         return ()=>{
             map=null;
@@ -21,7 +22,9 @@ const Detail=(props)=>{
                 }
             }
         }).then(res=>{
+            // console.log("res",res);
             if(res.code==="0"){
+                console.log("hhhh");
                 setState({
                     ...state,
                     orderInfo:res.result
@@ -82,7 +85,7 @@ const Detail=(props)=>{
             map.centerAndZoom(endPoint,11);
         }
     }
-
+    // console.log(state,"state");
     // 绘制服务区
     const drawServiveArea=(positionList)=>{
         let trackPoint=[];
@@ -90,9 +93,15 @@ const Detail=(props)=>{
             trackPoint.push(new window.BMapGL.Point(value.lon,value.lat));//向数组里面加入坐标的元素
             return value;
         })
-        let polygon=new window.BMapGL.Polyline(trackPoint,{
-            strokeColor: "#CE0000",
-            strokeWeight: 3,
+        // let polygon=new window.BMapGL.Polyline(trackPoint,{
+        //     strokeColor: "#CE0000",
+        //     strokeWeight: 3,
+        //     fillColor:"#ff8605",
+        //     fillOpacity:0.4
+        // })
+        let polygon=new window.BMapGL.Polygon(trackPoint,{
+            strokeColor:"#ce0000",
+            strokeWeight:3,
             fillColor:"#ff8605",
             fillOpacity:0.4
         })

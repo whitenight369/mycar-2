@@ -15,7 +15,7 @@ const FilterForm = (props) => {
                 let placeholder = item.placeholder;
                 let width = item.width;
                 if (item.type === "时间查询") {
-                    const BEGIN_TIME = <FormItem name="start_time" label={label} key={field}>
+                    const BEGIN_TIME = <FormItem name="start_time" label={label} key={"start"+field}>
                         <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder={placeholder} />
                     </FormItem>
                     formListItem.push(BEGIN_TIME);
@@ -53,8 +53,8 @@ const FilterForm = (props) => {
                                     formListItem.push(Date);
                                 } else
                                     if (item.type === "城市") {
-                                        const city = <FormItem name={field} key={field}>
-                                            <Select placeholder={placeholder} defaultValue="0" style={{ width: 80 }} >
+                                        const city = <FormItem name={field} label={label} key={field}>
+                                            <Select placeholder={placeholder} initialvalue={0} style={{ width: 80 }} >
                                                 {utils.getOptionsList([{ id: 0, name: "全部" }, { id: 1, name: "北京" }, { id: 2, name: "上海" }, { id: 3, name: "杭州" }, { id: 4, name: "天津" }])}
                                             </Select>
                                         </FormItem>
