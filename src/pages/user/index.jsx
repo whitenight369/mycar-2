@@ -8,7 +8,7 @@ import Axios from './../../axios';
 import utils from '../../utils/utils';
 const User = () => {
     const [form1] = Form.useForm();
-    const [state, setState] = useState({ isVisible: false,userInfo:{} });
+    const [state, setState] = useState({ isVisible: false,userInfo:{}});
     const formList = [
         {
             type: "INPUT",
@@ -46,7 +46,7 @@ const User = () => {
     useEffect(() => {
         request();
     }, [])
-    console.log("state",state);
+    // console.log("state",state);
     // 创建员工提交
     const handleSubmit = () => {
         let type = state.type;
@@ -62,15 +62,15 @@ const User = () => {
                     ...state,
                     isVisible: false
                 })
-                request();
+                // request();
             }
         })
     }
     // 按钮点击事件  分情况触发不同的模态框
     const handleOperate=(type)=>{
         let item=state.selectedItem;
-        console.log(state.selectedItem);
         if(type==="create"){
+            form1.resetFields();
             setState({
                 ...state,
                 isVisible:true,
@@ -90,7 +90,8 @@ const User = () => {
                 ...state,
                 isVisible:true,
                 title:"编辑员工",
-                userInfo:item
+                userInfo:item,
+                type
             })
         }else 
         if(type==="detail"){
@@ -105,12 +106,13 @@ const User = () => {
             setState({
                 ...state,
                 isVisible:true,
-                userInfo:item,
-                title:"员工详情"
+                userInfo:state.selectedItem,
+                title:"员工详情",
+                type
             })
         }else{
             if(!item){
-                console.log("hhhhhhh");
+                // console.log("hhhhhhh");
                 Modal.info({
                     title:"提示",
                     content:"请选择一个员工"
@@ -134,13 +136,33 @@ const User = () => {
                                 isVisible:false
                             })
                             message.info("删除成功!");
-                            request();
+                            // request();
                         }
                     })
                 }
             })
         }
     }
+    // console.log(state);
+
+    const updateSelectedItem=(selectedRowKeys,selectedItem,selectedIds)=>{
+            if(selectedIds){
+                setState({
+                    ...state,
+                    selectedItem,
+                    selectedRowKeys,
+                    selectedIds
+                })
+            }else{
+                setState({
+                    ...state,
+                    selectedItem,
+                    selectedRowKeys
+                }) 
+            }
+        // console.log(state);
+    }
+
     // 取消详情框的页脚
     let footer = {};
     if (state.type === "detail") {
@@ -148,6 +170,8 @@ const User = () => {
             footer: null
         }
     }
+    // 初始化表单
+    const initialValues={user_name:state.userInfo.username,sex:state.userInfo.sex,state:state.userInfo.state,birthday:moment(state.userInfo.birthday),address:state.userInfo.address}
     return (
         <section>
             <Card className='card-wrap'>
@@ -165,7 +189,7 @@ const User = () => {
                     selectedRowKeys={state.selectedRowKeys}
                     dataSource={state.list}
                     columns={columns}
-                    updateSelectedItem={utils.updateSelectedItem(state, setState)}
+                    updateSelectedItem={updateSelectedItem}
                     pagination={state.pagination}
                 />
             </Card>
@@ -173,7 +197,7 @@ const User = () => {
                 title={state.title}
                 visible={state.isVisible}
                 width={600}
-                onOk={handleSubmit}
+                onOk={()=>{handleSubmit()}}
                 onCancel={() => {
                     form1.resetFields();
                     setState({
@@ -183,32 +207,40 @@ const User = () => {
                 }}
                 {...footer}
             >
-                <Form layout='horizontal' form={form1}>
-                    <Form.Item {...formItemLayOut} label="用户名" name="user_name" initialValue={state.userInfo.username}>
-                        {state.type === "detail" ? state.userInfo.username : <Input placeholder='请输入用户名' />}
-                    </Form.Item>
-                    <Form.Item {...formItemLayOut} label="性别" name="sex" initialValue={state.userInfo.sex}>
-                        {state.type === "detail" ? state.userInfo.sex === 1 ? "男" : "女" : <Radio.Group >
-                            <Radio value={1}>男</Radio>
-                            <Radio value={0}>女</Radio>
-                        </Radio.Group>}
-                    </Form.Item>
-                    <Form.Item {...formItemLayOut} label="状态" name="state" initialValue={state.userInfo.state}>
-                        <Select>
-                            <Select.Option value={1}>PlanB</Select.Option>
-                            <Select.Option value={2}>A计划</Select.Option>
-                            <Select.Option value={3}>晚安</Select.Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item {...formItemLayOut} label="生日" name={"birthday"} initialValue={moment(state.userInfo.birthday)}>
-                        <DatePicker />
-                    </Form.Item>
-                    <Form.Item {...formItemLayOut} label="联系地址" name={"address"} initialValue={state.userInfo.address}>
-                        <Input.TextArea placeholder="请输入地址" rows={3} />
-                    </Form.Item>
-                </Form>
+             <UserForm form1={form1} userInfo={state.userInfo} formItemLayOut={formItemLayOut} type={state.type} />  
             </Modal>
         </section>
     )
 }
 export default User;
+const UserForm=(props)=>{
+    let {formItemLayOut,form1,userInfo,type}=props;
+    return (
+        <Form layout='horizontal' form={form1}>
+        <Form.Item {...formItemLayOut} label="用户名" name="user_name" initialValue={userInfo.username}>
+            {type === "detail" ? userInfo.username : <Input placeholder='请输入用户名' />}
+        </Form.Item>
+        <Form.Item {...formItemLayOut} label="性别" name="sex" initialValue={userInfo.sex}>
+            {type === "detail" ? userInfo.sex === 1 ? "男" : "女" : <Radio.Group >
+                <Radio value={1}>男</Radio>
+                <Radio value={0}>女</Radio>
+            </Radio.Group>}
+        </Form.Item>
+        <Form.Item {...formItemLayOut} label="状态" name="state" initialValue={userInfo.state}>
+            {type==="detail"?userInfo.state:<Select>
+                <Select.Option value={1}>PlanB</Select.Option>
+                <Select.Option value={2}>A计划</Select.Option>
+                <Select.Option value={3}>晚安</Select.Option>
+                <Select.Option value={4}>晚安</Select.Option>
+                <Select.Option value={5}>晚安</Select.Option>
+            </Select>}
+        </Form.Item>
+        <Form.Item {...formItemLayOut} label="生日" name={"birthday"} initialValue={moment(userInfo.birthday)}>
+            {type==="detail"?userInfo.birthday:<DatePicker />}
+        </Form.Item>
+        <Form.Item {...formItemLayOut} label="联系地址" name={"address"} initialValue={userInfo.address}>
+            <Input.TextArea placeholder="请输入地址" rows={3} />
+        </Form.Item>
+    </Form>
+    )
+}

@@ -58,3 +58,6 @@ Cannot read properties of null (reading 'clientWidth')
             fillColor:"#ff8605",
             fillOpacity:0.4
         })
+
+无报错
+state数据刷新不同步
