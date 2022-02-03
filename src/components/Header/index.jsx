@@ -40,8 +40,8 @@ const Header=(props)=>{
         <div className='header'>
             <Row className='header-top'>
                 {props.menuType?
-                <Col className='logo-ant'>
-                    <img src='/assets/logo/svg' />
+                <Col className='logo-ant' span={6}>
+                    <img src='/assets/logo.svg' />
                     <span>Imooc 通用管理系统</span>
                 </Col>:""}
                 <Col span={props.menuType?18:24}>

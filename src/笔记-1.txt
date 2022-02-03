@@ -6,9 +6,14 @@ cnpm i antd -S;
 redux链接到静态组件
 直接mapStateToProps就把store里面的state扔到props里面去了
 
+form有个api好像是获取数据用的  类似于hooks  [form]=Form.useForm();
+
 Login
 --->Form.Item里面只能有一个子元素  不然Form获取数据的时候就会获取到undefined
     比如remember me里面加一个忘记密码  也有可能这是原生dom  所以antd获取不到dom
+
+city
+--->使用form获取数据  initialValues以对象的形式去设置默认值
 
 报错:
 `info.item` is deprecated since we will move to function component that not provides React Node instance in future.
@@ -21,3 +26,19 @@ reg---birthday不能获取到数据  可能是因为space导致的
 无报错:
 单选按钮设置不上去--->table-basic
 解决  ---->数据必须加key值  key值要保持和索引值一样 selectedRowKeys
+
+报错:
+Cannot read properties of null (reading 'clientWidth')
+ 因为元素还未创建就去读取宽高  读取不到所以会报错 
+ 在外面创建出来map实例对象标记为null
+ 在render的时候创建就ok
+解决:使用闭包 
+ let map=null;
+    // 地图初始化
+    const renderMap=(res)=>{
+        map=new window.BMapGL.Map("orderDetailMap");//创建一个Map实例 加入到挂载点上
+        map.centerAndZoom('北京',11);//初始化地图,设置中心点坐标和地图级别
+        addMapControl();//添加地图控件
+        drawBikeRoute(res.position_list);//绘制路线图
+        drawServiveArea(res.area);//绘制服务区
+    }

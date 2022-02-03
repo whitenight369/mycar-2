@@ -14,11 +14,22 @@ import Login from "./pages/form/Login";
 import Reg from "./pages/form/Reg";
 import Basic from "./pages/table/Basic";
 import HighTable from "./pages/table/HighTable";
+import City from "./pages/city";
+import Order from "./pages/order";
+import Detail from "./pages/order/Detail";
+import Common from './Common';
 
 const IRouter = () =>{
     return (
         <HashRouter>
             <App>
+                <Switch>
+                <Route path="/common" render={()=>
+                    <Common>
+                        <Route  path="/common/order/detail/:orderId" component={Detail} />
+                    </Common>
+                } />
+                
                 <Route path="/" render={()=>
                     <Admin>
                     <Route path="/home" component={Home}/>
@@ -34,8 +45,11 @@ const IRouter = () =>{
                     <Route path="/form/reg" component={Reg}/>
                     <Route path="/table/basic" component={Basic}/>
                     <Route path="/table/high" component={HighTable}/>
+                    <Route path="/city" component={City}/>
+                    <Route path="/order" component={Order}/>
                     </Admin>
                 }/>
+                </Switch>
             </App>        
         </HashRouter>
     )

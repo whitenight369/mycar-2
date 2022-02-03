@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import utils from '../utils/utils';
 export default class Axios {
     static requestList(obj,url,params,isMock){
-        // obj要包含state ,setState  ，params  ,request
+        // obj要包含state ,setState    ,request
         var data={
             params,isMock
         }
@@ -16,7 +16,8 @@ export default class Axios {
                 ...obj.state,
                 list,
                 pagination:utils.pagination(res, (current) => {//修改this上面的页码 然后根据这个页码从新取数据 下面的request就是从新取数据的过程  后台根据page来给数据
-                    obj.params.page = current;
+                    params.page = current;
+                    console.log("params.page",params.page);
                     obj.request();
                 })
             })

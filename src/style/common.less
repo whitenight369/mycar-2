@@ -3,6 +3,14 @@
 ul,li{
     list-style: none;
 }
+.clear-fix{
+    &::after{
+        content:" ";
+        clear:both;
+        display: block;
+        visibility :hidden;
+    }
+}
 .container{
     .nav-left{
         width: 15%;
@@ -18,5 +26,28 @@ ul,li{
     .content{
         position: relative;
         padding: 20px;
+    }
+}
+
+// 城市管理的边框问题  加了bordered之后边框重合会变粗 所以用margin向外拓展一下   
+.content-wrap{
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+    margin-top: -3px;
+    .ant-table-wrapper{
+        margin-left: -1px;
+        margin-right: -2px;
+    }
+}
+// common 页面简单头
+.simple-page{
+    .header-top{
+        background-color: #1890ff;
+        color: @colorM;
+    }
+    .ant_form,
+    .ant-col-12,
+    .weather{
+        display: none;
     }
 }
