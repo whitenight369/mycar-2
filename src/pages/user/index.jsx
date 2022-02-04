@@ -145,23 +145,7 @@ const User = () => {
     }
     // console.log(state);
 
-    const updateSelectedItem=(selectedRowKeys,selectedItem,selectedIds)=>{
-            if(selectedIds){
-                setState({
-                    ...state,
-                    selectedItem,
-                    selectedRowKeys,
-                    selectedIds
-                })
-            }else{
-                setState({
-                    ...state,
-                    selectedItem,
-                    selectedRowKeys
-                }) 
-            }
-        // console.log(state);
-    }
+
 
     // 取消详情框的页脚
     let footer = {};
@@ -170,8 +154,6 @@ const User = () => {
             footer: null
         }
     }
-    // 初始化表单
-    const initialValues={user_name:state.userInfo.username,sex:state.userInfo.sex,state:state.userInfo.state,birthday:moment(state.userInfo.birthday),address:state.userInfo.address}
     return (
         <section>
             <Card className='card-wrap'>
@@ -189,7 +171,7 @@ const User = () => {
                     selectedRowKeys={state.selectedRowKeys}
                     dataSource={state.list}
                     columns={columns}
-                    updateSelectedItem={updateSelectedItem}
+                    updateSelectedItem={utils.updateSelectedItem(state,setState)}
                     pagination={state.pagination}
                 />
             </Card>
@@ -217,17 +199,17 @@ const UserForm=(props)=>{
     let {formItemLayOut,form1,userInfo,type}=props;
     return (
         <Form layout='horizontal' form={form1}>
-        <Form.Item {...formItemLayOut} label="用户名" name="user_name" initialValue={userInfo.username}>
-            {type === "detail" ? userInfo.username : <Input placeholder='请输入用户名' />}
+        <Form.Item {...formItemLayOut} label="用户名" name="user_name" >
+            {type === "detail" ? userInfo.username : <Input placeholder='请输入用户名' defaultValue={userInfo.username} />}
         </Form.Item>
         <Form.Item {...formItemLayOut} label="性别" name="sex" initialValue={userInfo.sex}>
-            {type === "detail" ? userInfo.sex === 1 ? "男" : "女" : <Radio.Group >
+            {type === "detail" ? userInfo.sex === 1 ? "男" : "女" : <Radio.Group defaultValue={userInfo.sex}>
                 <Radio value={1}>男</Radio>
                 <Radio value={0}>女</Radio>
             </Radio.Group>}
         </Form.Item>
-        <Form.Item {...formItemLayOut} label="状态" name="state" initialValue={userInfo.state}>
-            {type==="detail"?userInfo.state:<Select>
+        <Form.Item {...formItemLayOut} label="状态" name="state">
+            {type==="detail"?userInfo.state:<Select defaultValue={userInfo.state}>
                 <Select.Option value={1}>PlanB</Select.Option>
                 <Select.Option value={2}>A计划</Select.Option>
                 <Select.Option value={3}>晚安</Select.Option>
@@ -235,11 +217,11 @@ const UserForm=(props)=>{
                 <Select.Option value={5}>晚安</Select.Option>
             </Select>}
         </Form.Item>
-        <Form.Item {...formItemLayOut} label="生日" name={"birthday"} initialValue={moment(userInfo.birthday)}>
-            {type==="detail"?userInfo.birthday:<DatePicker />}
+        <Form.Item {...formItemLayOut} label="生日" name={"birthday"}>
+            {type==="detail"?userInfo.birthday:<DatePicker defaultValue={moment(userInfo.birthday)} />}
         </Form.Item>
-        <Form.Item {...formItemLayOut} label="联系地址" name={"address"} initialValue={userInfo.address}>
-            <Input.TextArea placeholder="请输入地址" rows={3} />
+        <Form.Item {...formItemLayOut} label="联系地址" name={"address"} >
+            <Input.TextArea placeholder="请输入地址" defaultValue={userInfo.address} rows={3} />
         </Form.Item>
     </Form>
     )

@@ -20,6 +20,10 @@ import Detail from "./pages/order/Detail";
 import Common from './Common';
 import User from "./pages/user";
 import BikeMap from './pages/map';
+import Rich from "./pages/rich";
+import Bar from "./pages/echarts/bar/inedx";
+import Line from "./pages/echarts/line";
+import Pie from "./pages/echarts/pie";
 const IRouter = () =>{
     return (
         <HashRouter>
@@ -50,6 +54,10 @@ const IRouter = () =>{
                     <Route path="/order" component={Order}/>
                     <Route path="/user" component={User}/>
                     <Route path="/bikeMap" component={BikeMap} />
+                    <Route path="/rich" component={Rich} />
+                    <Route path="/charts/bar" component={Bar} />
+                    <Route path="/charts/line" component={Line} />
+                    <Route path="/charts/pie" component={Pie} />
                     </Admin>
                 }/>
                 </Switch>

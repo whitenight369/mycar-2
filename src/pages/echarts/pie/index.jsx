@@ -1,0 +1,155 @@
+import {Card} from 'antd';
+import ReactEcharts from 'echarts-for-react';
+const Pie=()=>{
+    let option1={
+        title:{
+            text:"用户骑行订单"
+        },
+        tooltip:{
+            trigger:'item',
+            formatter:'{a}<br/>{b}:{c}({d}%)'//按照模版显示提示框
+        },
+        legend:{
+            orient:"vertical",
+            right:"right"//应该设置为true就可以
+        },
+        series:[
+            {
+                name:"订单量",
+                type:"pie",
+                data:[
+                    {
+                        value:1000,
+                        name:"周一"
+                    },
+                    {
+                        value:1000,
+                        name:"周二"
+                    },
+                    {
+                        value:1200,
+                        name:"周三"
+                    },
+                    {
+                        value:1400,
+                        name:"周四"
+                    },
+                    {
+                        value:1500,
+                        name:"周五"
+                    },
+                    {
+                        value:2000,
+                        name:"周六"
+                    },
+                    {
+                        value:1300,
+                        name:"周日"
+                    }
+                ]
+            }
+        ]
+    }
+    let option2={
+        title:{
+            text:"用户骑行订单"
+        },
+        tooltip:{
+            trigger:"item",
+            formatter:'{a}<br/>{b}:{c}({d}%)'
+        },
+        legend:{
+            orient:"vertical",
+            right:"right"
+        },
+        series:[
+            {
+                name:"订单量",
+                type:"pie",
+                radius:['50%','80%'],
+                data:[
+                    {
+                        value:1000,
+                        name:"周一"
+                    },{
+                        name:"周二",
+                        value:1200
+                    },{
+                        name:"周三",
+                        value:1500
+                    },{
+                        name:"周四",
+                        value:5000
+                    },{
+                        name:"周五",
+                        value:3500
+                    },{
+                        name:"周六",
+                        value:2900
+                    },{
+                        name:"周日",
+                        value:2330
+                    }
+                ]
+            }
+        ]
+    }
+    let option3={
+        title:{
+            text:"用户骑行订单"
+        },
+        tooltip:{
+            trigger:'item',
+            formatter:'{a}<br/>{b}:{c}({d}%)'
+        },
+        legend:{
+            orient:"vertical",
+            right:"right"
+        },
+        series:[
+            {
+                name:"订单量",
+                type:"pie",
+                data:[
+                    {
+                        name:"周一",
+                        value:1000
+                    },{
+                        name:"周二",
+                        value:1500
+                    },{
+                        name:"周三",
+                        value:1200
+                    },{
+                        name:"周四",
+                        value:1900
+                    },{
+                        name:"周五",
+                        value:1400
+                    },{
+                        name:"周六",
+                        value:1100
+                    },{
+                        name:"周日",
+                        value:1600
+                    }
+                ].sort((a,b)=>a.value-b.value),
+                roseType:"raduis"
+            }
+        ]
+    }
+    return (
+        <section>
+            <Card title="饼形图之1" className='card-wrap'>
+                <ReactEcharts option={option1} style={{height:500}} />
+            </Card>
+            <Card title="饼形图之2" className='card-wrap'>
+                <ReactEcharts option={option2} style={{height:500}} />
+            </Card>
+            <Card title="饼形图之3" className='card-wrap'>
+                <ReactEcharts option={option3} style={{height:500}} />
+            </Card>
+        </section>
+    )
+}
+export default Pie;
