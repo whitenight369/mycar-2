@@ -24,6 +24,7 @@ import Rich from "./pages/rich";
 import Bar from "./pages/echarts/bar/inedx";
 import Line from "./pages/echarts/line";
 import Pie from "./pages/echarts/pie";
+import Promision from "./pages/promiseion";
 const IRouter = () =>{
     return (
         <HashRouter>
@@ -58,6 +59,7 @@ const IRouter = () =>{
                     <Route path="/charts/bar" component={Bar} />
                     <Route path="/charts/line" component={Line} />
                     <Route path="/charts/pie" component={Pie} />
+                    <Route path="/permission" component={Promision} />
                     </Admin>
                 }/>
                 </Switch>

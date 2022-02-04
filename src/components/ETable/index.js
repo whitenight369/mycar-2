@@ -1,7 +1,6 @@
 import { Table } from 'antd';
 
 const ETable = (props) => {
-
     // 点击每一行的事件
     const onRowClick = (record, index) => {
         let rowSelection=props.rowSelection;

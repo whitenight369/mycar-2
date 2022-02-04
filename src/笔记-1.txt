@@ -61,3 +61,5 @@ Cannot read properties of null (reading 'clientWidth')
 
 无报错
 state数据刷新不同步
+解决?目前想的是设置一个effect   新创建一个对象把基本类型拷贝过去 看看能不能实现
+
